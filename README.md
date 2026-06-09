@@ -18,7 +18,7 @@ Proyecto academico en Java para modelar entidades base de un sistema de ferreter
 
 Este proyecto se desarrollo para practicar modelado orientado a objetos y sentar una base sobre la cual aplicar patrones de diseno en un sistema de ferreteria.
 
-La version actual contiene entidades de cliente y usuario, herencia desde una clase abstracta `Persona` y enumeraciones para tipo de cliente y rol de usuario.
+La version actual contiene el modelo base de persona, cliente y usuario dentro del paquete `pe.edu.utp.fersys`, con comentarios tecnicos para apoyar la exposicion academica.
 
 ## Tecnologias usadas
 
@@ -34,11 +34,13 @@ La version actual contiene entidades de cliente y usuario, herencia desde una cl
 ```txt
 utp-ferreteria-sys-patrones/
 |-- src/
-|   |-- Main.java
-|   `-- pe/edu/utp/modelo/
-|       |-- cliente/
-|       |-- persona/
-|       `-- usuario/
+|   `-- pe/edu/utp/fersys/
+|       |-- app/
+|       |   `-- Main.java
+|       `-- modelo/
+|           |-- cliente/
+|           |-- persona/
+|           `-- usuario/
 |-- .gitignore
 `-- README.md
 ```
@@ -66,7 +68,7 @@ Desde la raiz del repositorio:
 
 ```powershell
 javac -encoding UTF-8 -d out (Get-ChildItem -Recurse -Filter *.java).FullName
-java -cp out Main
+java -cp out pe.edu.utp.fersys.app.Main
 ```
 
 ## Estado del proyecto
@@ -78,6 +80,7 @@ java -cp out Main
 | Modelo de usuario | Implementado |
 | Enums de clasificacion | Implementados |
 | Demostracion en consola | Implementada |
+| Comentarios tecnicos de exposicion | Implementados |
 | Patrones de diseno documentados | Pendiente |
 | Aplicacion explicita de patrones | Pendiente |
 
