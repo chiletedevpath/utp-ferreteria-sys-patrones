@@ -2,8 +2,11 @@ package pe.edu.utp.fersys.app;
 
 import pe.edu.utp.fersys.modelo.cliente.Cliente;
 import pe.edu.utp.fersys.modelo.cliente.TipoCliente;
+import pe.edu.utp.fersys.modelo.producto.Categoria;
+import pe.edu.utp.fersys.modelo.producto.Producto;
 import pe.edu.utp.fersys.modelo.usuario.RolUsuario;
 import pe.edu.utp.fersys.modelo.usuario.Usuario;
+import pe.edu.utp.fersys.modelo.venta.Venta;
 
 /**
  * Punto de entrada para validar por consola el modelo base de FerreSys.
@@ -45,5 +48,33 @@ public class Main {
 
         System.out.println("=== USUARIO ===");
         usuario.mostrarInformacionBasica();
+
+        Producto martillo = new Producto(
+                "PROD001",
+                "Martillo de acero",
+                "Herramienta manual para trabajos de construccion",
+                25.00,
+                10,
+                2,
+                Categoria.HERRAMIENTAS
+        );
+
+        Producto pintura = new Producto(
+                "PROD002",
+                "Pintura blanca 1 galon",
+                "Pintura latex para interiores",
+                38.00,
+                5,
+                1,
+                Categoria.PINTURAS
+        );
+
+        Venta venta = new Venta("VENTA001", cliente, usuario);
+        venta.agregarDetalle(martillo, 2);
+        venta.agregarDetalle(pintura, 1);
+
+        System.out.println();
+        System.out.println("=== VENTA ===");
+        venta.mostrarResumenVenta();
     }
 }

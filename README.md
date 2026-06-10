@@ -18,7 +18,7 @@ Proyecto academico en Java para modelar entidades base de un sistema de ferreter
 
 Este proyecto se desarrollo para practicar modelado orientado a objetos y sentar una base sobre la cual aplicar patrones de diseno en un sistema de ferreteria.
 
-La version actual contiene el modelo base de persona, cliente y usuario dentro del paquete `pe.edu.utp.fersys`, con comentarios tecnicos para apoyar la exposicion academica.
+La version actual contiene el modelo base de persona, cliente, usuario, producto y venta dentro del paquete `pe.edu.utp.fersys`, con comentarios tecnicos para apoyar la exposicion academica.
 
 ## Tecnologias usadas
 
@@ -40,7 +40,9 @@ utp-ferreteria-sys-patrones/
 |       `-- modelo/
 |           |-- cliente/
 |           |-- persona/
-|           `-- usuario/
+|           |-- producto/
+|           |-- usuario/
+|           `-- venta/
 |-- .gitignore
 `-- README.md
 ```
@@ -54,6 +56,10 @@ utp-ferreteria-sys-patrones/
 | `Usuario` | Representa usuarios del sistema |
 | `TipoCliente` | Enumera tipos de cliente |
 | `RolUsuario` | Enumera roles de usuario |
+| `Producto` | Representa articulos y controla stock |
+| `Categoria` | Clasifica productos por rubro |
+| `DetalleVenta` | Calcula el subtotal de una linea de venta |
+| `Venta` | Agrupa detalles y calcula subtotal, IGV y total |
 | `Main` | Ejecuta una demostracion basica por consola |
 
 ## Punto de entrada
@@ -79,6 +85,8 @@ java -cp out pe.edu.utp.fersys.app.Main
 | Modelo de cliente | Implementado |
 | Modelo de usuario | Implementado |
 | Enums de clasificacion | Implementados |
+| Modelo de producto | Implementado |
+| Modelo de venta | Implementado |
 | Demostracion en consola | Implementada |
 | Comentarios tecnicos de exposicion | Implementados |
 | Patrones de diseno documentados | Pendiente |
