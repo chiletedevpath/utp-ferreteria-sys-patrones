@@ -8,6 +8,7 @@ import pe.edu.utp.fersys.modelo.producto.Producto;
 import pe.edu.utp.fersys.modelo.usuario.RolUsuario;
 import pe.edu.utp.fersys.modelo.usuario.Usuario;
 import pe.edu.utp.fersys.modelo.venta.Venta;
+import pe.edu.utp.fersys.observer.AlertaStockObserver;
 
 // Punto de entrada para validar por consola el modelo base de FerreSys.
 public class Main {
@@ -32,12 +33,16 @@ public class Main {
         System.out.println("=== USUARIO ===");
         usuario.mostrarInformacionBasica();
 
+        System.out.println();
+
         ProductoFactory pf = new ProductoFactory();
         Producto barreta = pf.crearProductoConstruccion();
         Producto pintura = pf.crearProductoPintura();
         Producto martillo = pf.crearProductoHerramienta();
 
         Venta venta = new Venta("VENTA001", cliente, usuario);
+        AlertaStockObserver alertaStockObserver = new AlertaStockObserver();
+        venta.agregarObservador(alertaStockObserver);
 
         VentaFacade ventaFacade = new VentaFacade(venta);
 
@@ -45,7 +50,7 @@ public class Main {
             System.out.println("Producto de construccion agregado a la venta.");
         }
 
-        if (ventaFacade.registrarProducto(pintura, 8)) {
+        if (ventaFacade.registrarProducto(pintura, 4)) {
             System.out.println("Pintura agregada a la venta.");
         } else {
             System.out.println("No se pudo agregar pintura: stock insuficiente.");

@@ -10,9 +10,16 @@ public class Producto {
     private int stockMinimo;
     private Categoria categoria;
 
-    // Crea un producto validando que precio y stock no inicien con valores negativos.
-    public Producto(String idProducto, String nombre, String descripcion, double precio,
-                    int stock, int stockMinimo, Categoria categoria) {
+    // Crea un producto con precio y stock no negativos.
+    public Producto(
+            String idProducto,
+            String nombre,
+            String descripcion,
+            double precio,
+            int stock,
+            int stockMinimo,
+            Categoria categoria
+    ) {
         this.idProducto = idProducto;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -48,7 +55,11 @@ public class Producto {
             this.stock -= cantidad;
             return true;
         }
-
         return false;
+    }
+
+    // Indica si el stock actual llego o bajo del minimo configurado.
+    public boolean estaBajoStock() {
+        return this.stock <= this.stockMinimo;
     }
 }

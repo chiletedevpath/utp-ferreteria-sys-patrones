@@ -3,6 +3,7 @@ package pe.edu.utp.fersys.modelo.venta;
 import pe.edu.utp.fersys.modelo.cliente.Cliente;
 import pe.edu.utp.fersys.modelo.producto.Producto;
 import pe.edu.utp.fersys.modelo.usuario.Usuario;
+import pe.edu.utp.fersys.observer.StockObserver;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,22 +15,32 @@ public class Venta {
     private Usuario usuario;
     private List<DetalleVenta> detalles;
     private static final double PORCENTAJE_IGV = 0.18;
+    private List<StockObserver> stockObservers;
 
     // Crea una venta vacia asociada a un cliente y al usuario vendedor.
-    public Venta(String idVenta, Cliente cliente, Usuario usuario) {
+    public Venta(
+            String idVenta,
+            Cliente cliente,
+            Usuario usuario
+    ) {
         this.idVenta = idVenta;
         this.cliente = cliente;
         this.usuario = usuario;
         this.detalles = new ArrayList<>();
+        this.stockObservers = new ArrayList<>();
     }
 
     // Agrega una linea de venta solo si el producto tiene stock suficiente.
-    public boolean agregarDetalle(Producto producto, int cantidad) {
+    public boolean agregarDetalle(
+            Producto producto,
+            int cantidad
+    ) {
         if (producto == null || !producto.tieneStockDisponible(cantidad)) {
             return false;
         }
 
         producto.reducirStock(cantidad);
+        notificarObservadores(producto);
         detalles.add(new DetalleVenta(producto, cantidad));
         return true;
     }
@@ -60,14 +71,29 @@ public class Venta {
         System.out.println("Venta: " + idVenta);
 
         for (DetalleVenta detalle : detalles) {
-            System.out.printf("%s x %d = S/ %.2f%n",
+            System.out.printf(
+                    "%s x %d = S/ %.2f%n",
                     detalle.obtenerProducto().obtenerNombre(),
-                    detalle.obtenerCantidad(),
-                    detalle.calcularSubtotal());
+                    detalle.obtenerCantidad(), detalle.calcularSubtotal()
+            );
         }
 
         System.out.printf("Subtotal: S/ %.2f%n", calcularSubtotal());
         System.out.printf("IGV: S/ %.2f%n", calcularIgv());
         System.out.printf("Total: S/ %.2f%n", calcularTotal());
+    }
+
+    // Registra un observador interesado en cambios de stock.
+    public void agregarObservador(StockObserver observador) {
+        if (observador != null) {
+            stockObservers.add(observador);
+        }
+    }
+
+    // Notifica a todos los observadores cuando un producto cambia de stock.
+    private void notificarObservadores(Producto producto) {
+        for (StockObserver observador : stockObservers) {
+            observador.actualizar(producto);
+        }
     }
 }
