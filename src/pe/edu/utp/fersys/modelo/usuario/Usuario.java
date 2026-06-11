@@ -2,17 +2,13 @@ package pe.edu.utp.fersys.modelo.usuario;
 
 import pe.edu.utp.fersys.modelo.persona.Persona;
 
-/**
- * Representa al trabajador que opera FerreSys segun un rol asignado.
- */
+// Representa al trabajador que opera FerreSys segun un rol asignado.
 public class Usuario extends Persona {
     private String username;
     private String password;
     private RolUsuario rolUsuario;
 
-    /**
-     * Crea un usuario con credenciales y rol para controlar acceso futuro.
-     */
+    // Crea un usuario con credenciales y rol para controlar acceso futuro.
     public Usuario(int idPersona, String dni, String nombres, String apellidos,
                    String telefono, String correo, String direccion,
                    String username, String password, RolUsuario rolUsuario) {
@@ -22,9 +18,7 @@ public class Usuario extends Persona {
         this.rolUsuario = rolUsuario;
     }
 
-    /**
-     * Muestra datos clave del usuario sin exponer su contrasena.
-     */
+    // Muestra datos clave del usuario sin exponer su contrasena.
     @Override
     public void mostrarInformacionBasica() {
         System.out.println("Usuario: " + obtenerNombreCompleto());

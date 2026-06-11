@@ -2,16 +2,12 @@ package pe.edu.utp.fersys.modelo.cliente;
 
 import pe.edu.utp.fersys.modelo.persona.Persona;
 
-/**
- * Representa al comprador registrado y especializa los datos de Persona.
- */
+// Representa al comprador registrado y especializa los datos de Persona.
 public class Cliente extends Persona {
     private String codigoCliente;
     private TipoCliente tipoCliente;
 
-    /**
-     * Crea un cliente con identificacion interna y clasificacion comercial.
-     */
+    // Crea un cliente con identificacion interna y clasificacion comercial.
     public Cliente(int idPersona, String dni, String nombres, String apellidos,
                    String telefono, String correo, String direccion,
                    String codigoCliente, TipoCliente tipoCliente) {
@@ -20,9 +16,7 @@ public class Cliente extends Persona {
         this.tipoCliente = tipoCliente;
     }
 
-    /**
-     * Muestra datos clave del cliente para validacion por consola.
-     */
+    // Muestra datos clave del cliente para validacion por consola.
     @Override
     public void mostrarInformacionBasica() {
         System.out.println("Cliente: " + obtenerNombreCompleto());

@@ -1,8 +1,6 @@
 package pe.edu.utp.fersys.modelo.persona;
 
-/**
- * Abstrae los datos comunes que comparten clientes y usuarios del sistema.
- */
+// Abstrae los datos comunes que comparten clientes y usuarios del sistema.
 public abstract class Persona {
     private int idPersona;
     private String dni;
@@ -12,9 +10,7 @@ public abstract class Persona {
     private String correo;
     private String direccion;
 
-    /**
-     * Inicializa la informacion personal reutilizada por las clases hijas.
-     */
+    // Inicializa la informacion personal reutilizada por las clases hijas.
     public Persona(int idPersona, String dni, String nombres, String apellidos,
                    String telefono, String correo, String direccion) {
         this.idPersona = idPersona;
@@ -26,15 +22,11 @@ public abstract class Persona {
         this.direccion = direccion;
     }
 
-    /**
-     * Devuelve el nombre completo para evitar duplicar formato en subclases.
-     */
+    // Devuelve el nombre completo para evitar duplicar formato en subclases.
     public String obtenerNombreCompleto() {
         return nombres + " " + apellidos;
     }
 
-    /**
-     * Obliga a cada tipo de persona a definir su propia salida basica.
-     */
+    // Obliga a cada tipo de persona a definir su propia salida basica.
     public abstract void mostrarInformacionBasica();
 }

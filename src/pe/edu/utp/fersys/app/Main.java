@@ -8,13 +8,9 @@ import pe.edu.utp.fersys.modelo.usuario.RolUsuario;
 import pe.edu.utp.fersys.modelo.usuario.Usuario;
 import pe.edu.utp.fersys.modelo.venta.Venta;
 
-/**
- * Punto de entrada para validar por consola el modelo base de FerreSys.
- */
+// Punto de entrada para validar por consola el modelo base de FerreSys.
 public class Main {
-    /**
-     * Crea objetos de prueba y muestra su informacion basica.
-     */
+    // Crea objetos de prueba y muestra su informacion basica.
     public static void main(String[] args) {
         Cliente cliente = new Cliente(
                 1, "73748381", "Adrian", "Pisco Soto", "945834043",
