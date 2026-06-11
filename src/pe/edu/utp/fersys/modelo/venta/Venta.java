@@ -74,13 +74,14 @@ public class Venta {
         System.out.println("Venta: " + idVenta);
 
         for (DetalleVenta detalle : detalles) {
-            System.out.println(detalle.obtenerProducto().obtenerNombre()
-                    + " x " + detalle.obtenerCantidad()
-                    + " = S/ " + detalle.calcularSubtotal());
+            System.out.printf("%s x %d = S/ %.2f%n",
+                    detalle.obtenerProducto().obtenerNombre(),
+                    detalle.obtenerCantidad(),
+                    detalle.calcularSubtotal());
         }
 
-        System.out.println("Subtotal: S/ " + calcularSubtotal());
-        System.out.println("IGV: S/ " + calcularIgv());
-        System.out.println("Total: S/ " + calcularTotal());
+        System.out.printf("Subtotal: S/ %.2f%n", calcularSubtotal());
+        System.out.printf("IGV: S/ %.2f%n", calcularIgv());
+        System.out.printf("Total: S/ %.2f%n", calcularTotal());
     }
 }

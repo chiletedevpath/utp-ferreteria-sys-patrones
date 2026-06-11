@@ -28,6 +28,7 @@ La version actual contiene el modelo base de persona, cliente, usuario, producto
 - Clases abstractas
 - Enumeraciones
 - Paquetes por dominio
+- Patron Factory
 
 ## Que contiene el repositorio
 
@@ -37,6 +38,8 @@ utp-ferreteria-sys-patrones/
 |   `-- pe/edu/utp/fersys/
 |       |-- app/
 |       |   `-- Main.java
+|       |-- factory/
+|       |   `-- ProductoFactory.java
 |       `-- modelo/
 |           |-- cliente/
 |           |-- persona/
@@ -60,6 +63,7 @@ utp-ferreteria-sys-patrones/
 | `Categoria` | Clasifica productos por rubro |
 | `DetalleVenta` | Calcula el subtotal de una linea de venta |
 | `Venta` | Agrupa detalles y calcula subtotal, IGV y total |
+| `ProductoFactory` | Centraliza la creacion de productos de ejemplo |
 | `Main` | Ejecuta una demostracion basica por consola |
 
 ## Punto de entrada
@@ -87,6 +91,7 @@ java -cp out pe.edu.utp.fersys.app.Main
 | Enums de clasificacion | Implementados |
 | Modelo de producto | Implementado |
 | Modelo de venta | Implementado |
+| Patron Factory para productos | Implementado |
 | Demostracion en consola | Implementada |
 | Comentarios tecnicos de exposicion | Implementados |
 | Patrones de diseno documentados | Pendiente |
