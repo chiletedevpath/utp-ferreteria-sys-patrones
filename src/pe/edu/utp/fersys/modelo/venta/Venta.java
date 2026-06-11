@@ -8,7 +8,7 @@ import pe.edu.utp.fersys.observer.StockObserver;
 import java.util.ArrayList;
 import java.util.List;
 
-// Agrupa detalles de venta y calcula los importes comerciales del comprobante.
+// GRASP Experto: Venta calcula importes porque conoce todos sus detalles.
 public class Venta {
     private String idVenta;
     private Cliente cliente;
@@ -30,7 +30,7 @@ public class Venta {
         this.stockObservers = new ArrayList<>();
     }
 
-    // Agrega una linea de venta solo si el producto tiene stock suficiente.
+    // Registra un detalle, descuenta stock y dispara notificaciones Observer.
     public boolean agregarDetalle(
             Producto producto,
             int cantidad
@@ -45,7 +45,7 @@ public class Venta {
         return true;
     }
 
-    // Suma los subtotales de todos los detalles registrados.
+    // Calcula subtotal a partir de los detalles que componen la venta.
     public double calcularSubtotal() {
         double subtotal = 0;
 
@@ -83,14 +83,14 @@ public class Venta {
         System.out.printf("Total: S/ %.2f%n", calcularTotal());
     }
 
-    // Registra un observador interesado en cambios de stock.
+    // Suscribe observadores interesados en cambios de stock.
     public void agregarObservador(StockObserver observador) {
         if (observador != null) {
             stockObservers.add(observador);
         }
     }
 
-    // Notifica a todos los observadores cuando un producto cambia de stock.
+    // Desacopla Venta de las acciones concretas ejecutadas por cada observer.
     private void notificarObservadores(Producto producto) {
         for (StockObserver observador : stockObservers) {
             observador.actualizar(producto);

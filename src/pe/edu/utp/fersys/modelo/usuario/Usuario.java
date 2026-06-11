@@ -2,7 +2,7 @@ package pe.edu.utp.fersys.modelo.usuario;
 
 import pe.edu.utp.fersys.modelo.persona.Persona;
 
-// Representa al trabajador que opera FerreSys segun un rol asignado.
+// Herencia POO: Usuario especializa Persona con credenciales y rol.
 public class Usuario extends Persona {
     private String username;
     private String password;

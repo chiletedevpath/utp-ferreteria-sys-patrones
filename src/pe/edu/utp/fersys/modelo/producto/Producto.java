@@ -1,6 +1,6 @@
 package pe.edu.utp.fersys.modelo.producto;
 
-// Representa un articulo de venta y controla sus reglas basicas de stock.
+// GRASP Experto: Producto controla stock porque posee esos datos.
 public class Producto {
     private String idProducto;
     private String nombre;
@@ -44,12 +44,12 @@ public class Producto {
         return this.stock;
     }
 
-    // Verifica si el inventario alcanza para una cantidad solicitada.
+    // Regla de negocio: valida disponibilidad antes de permitir una venta.
     public boolean tieneStockDisponible(int cantidad) {
         return cantidad > 0 && this.stock >= cantidad;
     }
 
-    // Descuenta unidades solo si la operacion no deja stock negativo.
+    // Protege la invariante de inventario: el stock nunca debe ser negativo.
     public boolean reducirStock(int cantidad) {
         if (tieneStockDisponible(cantidad)) {
             this.stock -= cantidad;
@@ -58,7 +58,7 @@ public class Producto {
         return false;
     }
 
-    // Indica si el stock actual llego o bajo del minimo configurado.
+    // Soporta Observer indicando si corresponde emitir alerta de reposicion.
     public boolean estaBajoStock() {
         return this.stock <= this.stockMinimo;
     }

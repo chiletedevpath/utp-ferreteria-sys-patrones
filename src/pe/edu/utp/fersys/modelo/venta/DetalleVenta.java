@@ -2,13 +2,13 @@ package pe.edu.utp.fersys.modelo.venta;
 
 import pe.edu.utp.fersys.modelo.producto.Producto;
 
-// Representa una linea de venta compuesta por producto, cantidad y precio.
+// GRASP Experto: DetalleVenta calcula su subtotal con cantidad y precio.
 public class DetalleVenta {
     private Producto producto;
     private int cantidad;
     private double precioUnitario;
 
-    // Congela el precio del producto al momento de registrar la venta.
+    // Conserva el precio unitario usado en el momento de la venta.
     public DetalleVenta(Producto producto, int cantidad) {
         if (producto == null) {
             throw new IllegalArgumentException("El producto no puede ser nulo.");
@@ -23,7 +23,7 @@ public class DetalleVenta {
         this.precioUnitario = producto.obtenerPrecio();
     }
 
-    // Calcula el importe de esta linea de venta.
+    // Calcula el importe parcial de una sola linea del comprobante.
     public double calcularSubtotal() {
         return this.cantidad * this.precioUnitario;
     }

@@ -3,12 +3,12 @@ package pe.edu.utp.fersys.facade;
 import pe.edu.utp.fersys.modelo.producto.Producto;
 import pe.edu.utp.fersys.modelo.venta.Venta;
 
-// Simplifica el registro de productos y el resumen de una venta.
+// Patron Facade: expone operaciones simples para registrar y resumir ventas.
 public class VentaFacade {
 
     private Venta venta;
 
-    // Recibe la venta que sera administrada por la fachada.
+    // Inyecta la venta real que la fachada coordinara.
     public VentaFacade(Venta venta) {
         if (venta == null) {
             throw new IllegalArgumentException("La venta no puede ser nula.");
@@ -17,7 +17,7 @@ public class VentaFacade {
         this.venta = venta;
     }
 
-    // Registra un producto ocultando la validacion interna de stock.
+    // Oculta la validacion de stock y delega el registro al modelo Venta.
     public boolean registrarProducto(Producto producto, int cantidad) {
         if (producto == null) {
             return false;
@@ -30,7 +30,7 @@ public class VentaFacade {
         return venta.agregarDetalle(producto, cantidad);
     }
 
-    // Muestra el comprobante delegando el detalle a la venta interna.
+    // Reduce el acoplamiento del Main con los detalles internos de Venta.
     public void mostrarResumen() {
         venta.mostrarResumenVenta();
     }

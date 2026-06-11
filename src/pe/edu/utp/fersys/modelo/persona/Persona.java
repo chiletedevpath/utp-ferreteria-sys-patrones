@@ -1,6 +1,6 @@
 package pe.edu.utp.fersys.modelo.persona;
 
-// Abstrae los datos comunes que comparten clientes y usuarios del sistema.
+// Abstraccion POO: concentra datos comunes de clientes y usuarios.
 public abstract class Persona {
     private int idPersona;
     private String dni;
@@ -27,6 +27,6 @@ public abstract class Persona {
         return nombres + " " + apellidos;
     }
 
-    // Obliga a cada tipo de persona a definir su propia salida basica.
+    // Polimorfismo: cada subclase decide como mostrar sus datos basicos.
     public abstract void mostrarInformacionBasica();
 }

@@ -2,7 +2,7 @@ package pe.edu.utp.fersys.modelo.cliente;
 
 import pe.edu.utp.fersys.modelo.persona.Persona;
 
-// Representa al comprador registrado y especializa los datos de Persona.
+// Herencia POO: Cliente especializa la informacion comun de Persona.
 public class Cliente extends Persona {
     private String codigoCliente;
     private TipoCliente tipoCliente;

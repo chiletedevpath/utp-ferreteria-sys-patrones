@@ -2,10 +2,10 @@ package pe.edu.utp.fersys.observer;
 
 import pe.edu.utp.fersys.modelo.producto.Producto;
 
-// Muestra una alerta cuando un producto llega al stock minimo.
+// Observer concreto: emite alerta cuando un producto requiere reposicion.
 public class AlertaStockObserver implements StockObserver {
 
-    // Revisa el producto notificado y alerta si requiere reposicion.
+    // Reacciona solo si el producto notificado llego al stock minimo.
     @Override
     public void actualizar(Producto producto) {
         if (producto.estaBajoStock()) {
