@@ -1,86 +1,80 @@
-# UTP Ferreteria Sys Patrones
+# FerreSys - Sistema de gestion para ferreteria
 
-Proyecto academico en Java para modelar entidades base de un sistema de ferreteria y preparar la aplicacion de patrones de diseno.
-
-## Autor
-
-- Chilete DevPath
-- Estudiante de Ingenieria de Sistemas e Informatica
+Proyecto academico en Java para el curso de Diseno de Patrones de la UTP. El sistema modela una venta de ferreteria aplicando POO, principios de bajo acoplamiento y patrones GOF sobre un dominio simple pero defendible.
 
 ## Contexto academico
 
-- Institucion: UTP
-- Ciclo: 05
-- Curso: Patrones de Diseno
-- Tipo: Proyecto academico
-
-## Por que se hizo
-
-Este proyecto se desarrollo para practicar modelado orientado a objetos y sentar una base sobre la cual aplicar patrones de diseno en un sistema de ferreteria.
-
-La version actual contiene el modelo base de persona, cliente, usuario, producto y venta dentro del paquete `pe.edu.utp.fersys`, con comentarios tecnicos para apoyar la exposicion academica.
-
-## Tecnologias usadas
-
-- Java
-- Programacion orientada a objetos
-- Herencia
-- Clases abstractas
-- Enumeraciones
-- Paquetes por dominio
-- Patron Factory
-- Patron Facade
-- Patron Observer
-
-## Que contiene el repositorio
-
-```txt
-utp-ferreteria-sys-patrones/
-|-- src/
-|   `-- pe/edu/utp/fersys/
-|       |-- app/
-|       |   `-- Main.java
-|       |-- factory/
-|       |   `-- ProductoFactory.java
-|       |-- facade/
-|       |   `-- VentaFacade.java
-|       |-- observer/
-|       |   |-- AlertaStockObserver.java
-|       |   `-- StockObserver.java
-|       `-- modelo/
-|           |-- cliente/
-|           |-- persona/
-|           |-- producto/
-|           |-- usuario/
-|           `-- venta/
-|-- .gitignore
-`-- README.md
-```
-
-## Modelo actual
-
-| Elemento | Responsabilidad |
+| Campo | Detalle |
 |---|---|
-| `Persona` | Clase abstracta base para datos personales |
-| `Cliente` | Representa clientes de la ferreteria |
-| `Usuario` | Representa usuarios del sistema |
-| `TipoCliente` | Enumera tipos de cliente |
-| `RolUsuario` | Enumera roles de usuario |
-| `Producto` | Representa articulos y controla stock |
-| `Categoria` | Clasifica productos por rubro |
-| `DetalleVenta` | Calcula el subtotal de una linea de venta |
-| `Venta` | Agrupa detalles y calcula subtotal, IGV y total |
-| `ProductoFactory` | Centraliza la creacion de productos de ejemplo |
-| `VentaFacade` | Simplifica el registro y resumen de una venta |
-| `StockObserver` | Define el contrato para alertas de stock |
-| `AlertaStockObserver` | Notifica productos que llegan al stock minimo |
-| `Main` | Ejecuta una demostracion basica por consola |
+| Institucion | UTP |
+| Curso | Diseno de Patrones |
+| Ciclo | 05 |
+| Proyecto | FerreSys |
+| Dominio | Gestion de ventas e inventario para ferreteria |
 
-## Punto de entrada
+## Alcance actual
+
+El proyecto permite crear clientes, usuarios y productos, registrar una venta, validar stock disponible, calcular subtotal, IGV y total, y emitir una alerta cuando un producto llega al stock minimo.
+
+La aplicacion se ejecuta por consola porque el objetivo principal es demostrar diseno orientado a objetos y patrones, no construir una interfaz grafica.
+
+## Estructura
 
 ```txt
-src/Main.java
+src/
+`-- pe/edu/utp/fersys/
+    |-- app/
+    |   `-- Main.java
+    |-- factory/
+    |   `-- ProductoFactory.java
+    |-- facade/
+    |   `-- VentaFacade.java
+    |-- observer/
+    |   |-- AlertaStockObserver.java
+    |   `-- StockObserver.java
+    `-- modelo/
+        |-- cliente/
+        |-- persona/
+        |-- producto/
+        |-- usuario/
+        `-- venta/
 ```
+
+## Componentes principales
+
+| Componente | Responsabilidad |
+|---|---|
+| `Persona` | Abstrae datos comunes de clientes y usuarios |
+| `Cliente` | Representa al comprador registrado |
+| `Usuario` | Representa al trabajador que opera el sistema |
+| `Producto` | Controla precio, stock y stock minimo |
+| `Venta` | Agrupa detalles, descuenta stock y calcula importes |
+| `DetalleVenta` | Calcula el subtotal de una linea de venta |
+| `ProductoFactory` | Centraliza la creacion de productos de ejemplo |
+| `VentaFacade` | Simplifica el registro y resumen de ventas |
+| `StockObserver` | Define el contrato de notificacion por stock |
+| `AlertaStockObserver` | Muestra alerta cuando un producto llega al stock minimo |
+
+## Conceptos aplicados
+
+| Concepto | Aplicacion en el proyecto |
+|---|---|
+| POO | Clases, encapsulamiento, herencia, abstraccion y polimorfismo |
+| GRASP Experto | `Producto` controla stock, `Venta` calcula totales y `DetalleVenta` calcula su subtotal |
+| Bajo acoplamiento | `Main` delega creacion, registro y alertas a clases especializadas |
+| Factory | `ProductoFactory` crea productos sin exponer datos de construccion en `Main` |
+| Facade | `VentaFacade` ofrece una entrada simple para registrar productos y mostrar resumen |
+| Observer | `Venta` notifica cambios de stock a observadores como `AlertaStockObserver` |
+
+## Flujo demostrado
+
+1. Se crean cliente y usuario.
+2. `ProductoFactory` crea productos de ejemplo.
+3. Se crea una `Venta`.
+4. Se registra `AlertaStockObserver` como observador de stock.
+5. `VentaFacade` registra productos en la venta.
+6. `Venta` descuenta stock y notifica observadores.
+7. Se muestra el resumen con subtotal, IGV y total.
 
 ## Ejecucion local
 
@@ -91,43 +85,24 @@ javac -encoding UTF-8 -d out (Get-ChildItem -Recurse -Filter *.java).FullName
 java -cp out pe.edu.utp.fersys.app.Main
 ```
 
-## Estado del proyecto
+## Estado
 
-| Punto | Estado |
+| Item | Estado |
 |---|---|
-| Modelo base de persona | Implementado |
-| Modelo de cliente | Implementado |
-| Modelo de usuario | Implementado |
-| Enums de clasificacion | Implementados |
-| Modelo de producto | Implementado |
-| Modelo de venta | Implementado |
-| Patron Factory para productos | Implementado |
-| Patron Facade para ventas | Implementado |
-| Patron Observer para alertas de stock | Implementado |
-| Demostracion en consola | Implementada |
-| Comentarios tecnicos de exposicion | Implementados |
-| Patrones de diseno documentados | Pendiente |
-| Aplicacion explicita de patrones | Pendiente |
+| Modelo base POO | Implementado |
+| Modelo de productos y ventas | Implementado |
+| Validacion de stock | Implementado |
+| Calculo de subtotal, IGV y total | Implementado |
+| Factory | Implementado |
+| Facade | Implementado |
+| Observer | Implementado |
+| Comentarios tecnicos de apoyo | Implementado |
+| Builder para comprobantes o reportes | Pendiente |
+| Documentacion UML y sustento final | Pendiente |
 
-## Aprendizajes aplicados
+## Pendientes reales
 
-- Modelado de entidades en Java.
-- Uso de herencia con clase abstracta.
-- Organizacion por paquetes.
-- Uso de enumeraciones para reglas de dominio.
-- Preparacion de una base para aplicar patrones de diseno.
-
-## Pendientes
-
-- Definir que patrones se aplicaran.
-- Documentar el problema que resuelve cada patron.
-- Agregar diagramas o ejemplos por patron.
-- Ampliar el dominio del sistema de ferreteria.
-
-## Relacion con Chilete DevPath
-
-Este proyecto forma parte del registro academico de Chilete DevPath:
-
-- [academia](https://github.com/chiletedevpath/academia)
-- [aprendizaje](https://github.com/chiletedevpath/aprendizaje)
-- [chiletedevpath](https://github.com/chiletedevpath/chiletedevpath)
+- Implementar Builder para construir comprobantes o reportes de venta.
+- Documentar UML de clases y relaciones principales.
+- Preparar una explicacion formal de patrones GOF y GRASP aplicados.
+- Evaluar si se agrega una capa de servicio o controlador para reforzar GRASP Controlador.
