@@ -1,5 +1,6 @@
 package pe.edu.utp.fersys.app;
 
+import pe.edu.utp.fersys.facade.VentaFacade;
 import pe.edu.utp.fersys.factory.ProductoFactory;
 import pe.edu.utp.fersys.modelo.cliente.Cliente;
 import pe.edu.utp.fersys.modelo.cliente.TipoCliente;
@@ -38,22 +39,24 @@ public class Main {
 
         Venta venta = new Venta("VENTA001", cliente, usuario);
 
-        if (venta.agregarDetalle(barreta, 2)) {
+        VentaFacade ventaFacade = new VentaFacade(venta);
+
+        if (ventaFacade.registrarProducto(barreta, 2)) {
             System.out.println("Producto de construccion agregado a la venta.");
         }
 
-        if (venta.agregarDetalle(pintura, 8)) {
+        if (ventaFacade.registrarProducto(pintura, 8)) {
             System.out.println("Pintura agregada a la venta.");
         } else {
             System.out.println("No se pudo agregar pintura: stock insuficiente.");
         }
 
-        if (venta.agregarDetalle(martillo, 3)) {
+        if (ventaFacade.registrarProducto(martillo, 3)) {
             System.out.println("Herramienta agregada a la venta.");
         }
 
         System.out.println();
         System.out.println("=== VENTA ===");
-        venta.mostrarResumenVenta();
+        ventaFacade.mostrarResumen();
     }
 }
